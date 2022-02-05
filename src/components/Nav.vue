@@ -1,7 +1,10 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+    <div id="nav">
+      <router-link to="/home">Главная</router-link> |
+      <router-link to="/about">О нас</router-link> |
+      <router-link to="/sales">Объявления</router-link>
+      <router-view/>
+    </div>
 </template>
 
 <style>
