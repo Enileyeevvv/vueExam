@@ -17,7 +17,7 @@
             <Form @refresh="getSales"/>
             <h2>Все объявления</h2>
             <div class="sales-list">
-              <div class="sales-list__item" v-for="sale in sales" :key="sale">
+              <div v-for="sale in sales" :key="sale" :class="sale.type === 'car' ? 'bg-car sales-list__item' : 'bg-apart sales-list__item'">
                 <img v-if="sale.type === 'car'" src="../assets/car_img.png">
                 <img v-else src="../assets/home_img.png">
                 <p>{{ sale.city }}, {{ sale.address }}</p>
@@ -35,7 +35,6 @@
                   <h4>Комнат: {{ sale.rooms }}</h4>
                   <p>Площадь: {{ sale.square }}</p>
                 </template>
-
               </div>
             </div>
           </main>
@@ -133,5 +132,11 @@ export default {
 .sales-list__item img {
   max-width: 250px;
   height: 150px;
+}
+.bg-car{
+  background-color: rgb(210, 210, 218);
+}
+.bg-apart{
+  background-color: rgb(216, 177, 177);
 }
 </style>

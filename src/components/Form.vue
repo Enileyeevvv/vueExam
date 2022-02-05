@@ -81,9 +81,9 @@
       <template v-else>
         Необходимо выбрать тип объявления!
       </template>
-
+      
       <div>
-      <button @click="addSale">Отправить</button>
+        <button @click="addSale">Отправить</button>
       </div>
 
     </form>
@@ -128,7 +128,15 @@ export default {
       try {
         await axios.post(
             `https://demo-api.vsdev.space/api/brom/sales`,
-            this.dataToPost()
+            (() => {
+              if (!Object.values(this.dataToPost()).includes('')) {
+                return this.dataToPost()
+              }
+              else {
+                alert('Заполнены не все поля')
+                return
+              }
+            })()
         );
         this.$emit('refresh');
         this.$store.dispatch('GET_SALES');
@@ -152,7 +160,8 @@ export default {
               engine_volume: this.engineVolume,
               engine_power: this.enginePower
             });
-      } else {
+      } 
+      else {
         return (
             {
               type: this.typeSelect,
