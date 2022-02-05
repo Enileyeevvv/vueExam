@@ -15,18 +15,17 @@
           </aside>
           <main class="main">
             <button @click="show = !show">
-                Показать
+                <p v-if="!show">Показать</p>
+                <p v-else>Скрыть</p>
             </button>
             <form v-if="show">
               <h2>Добавить объявление</h2>
-              <br>
-              {{fields}}
-              <br>
               <select>
-                <option 
-                  v-for="values in type" 
-                  :key="values">
-                  {{type.values}}
+                <option>
+                  car
+                </option>
+                <option>
+                  apartments
                 </option>
               </select>
             </form>
@@ -48,7 +47,7 @@
         </div>
       </div>
     </section>
-    <footer>{{formInfo}}</footer>
+    <footer></footer>
   </div>
 </template>
 
@@ -77,7 +76,7 @@ export default {
     axios
       .get("https://demo-api.vsdev.space/api/brom/sales")
       .then(response => (this.sales = response.data));
-      axios
+    axios
       .get("https://demo-api.vsdev.space/api/brom/sales/form")
       .then(response => (this.fields = response.data));
   }
